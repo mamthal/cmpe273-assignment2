@@ -105,5 +105,8 @@ public class BookRepository implements BookRepositoryInterface {
     public void delete(Long isbn) {
 	bookInMemoryMap.remove(isbn);
     }   
-    
+    @Override
+    public void addBook(Book newBook) {
+    	bookInMemoryMap.putIfAbsent(newBook.getIsbn(), newBook);
+    }
 }
