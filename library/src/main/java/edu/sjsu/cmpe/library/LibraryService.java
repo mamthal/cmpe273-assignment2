@@ -98,12 +98,13 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 						else
 						{
 							book = new Book();
+							book.setIsbn(isbn);
 							book.setTitle(bookinfo[1]);
 							book.setCategory(bookinfo[2]);
 							book.setCoverimage(new URL(bookinfo[3] + ":" + bookinfo[4]));
 							book.setStatus(Book.Status.available);
-							Book newbook = bookRepository.saveBook(book);
-							newbook.setIsbn(isbn);
+							bookRepository.addBook(book);
+							System.out.println(bookRepository.getBookByISBN(isbn));
 						}
 					}
 				}
